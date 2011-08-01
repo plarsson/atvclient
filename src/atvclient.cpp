@@ -26,6 +26,7 @@
 
 #define VENDOR_APPLE		0x05ac
 #define PRODUCT_IR		0x8241
+#define PRODUCT_IR2		0x8242
 
 #define LEDMODE_OFF		0
 #define LEDMODE_AMBER		1
@@ -265,7 +266,7 @@ static usb_dev_handle *find_ir(void)
 	for (bus = usb_busses; bus; bus = bus->next) {
 		for (dev = bus->devices; dev; dev = dev->next)
 			if (dev->descriptor.idVendor == VENDOR_APPLE
-			    && dev->descriptor.idProduct == PRODUCT_IR)
+			    && dev->descriptor.idProduct == PRODUCT_IR || dev->descriptor.idProduct == PRODUCT_IR2)
 				return usb_open(dev);
 	}
 
